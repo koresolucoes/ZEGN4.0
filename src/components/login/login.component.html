@@ -1,0 +1,60 @@
+<div class="flex items-center justify-center h-screen w-screen bg-gray-900">
+  <div class="w-full max-w-md p-8 space-y-8 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
+    <div class="text-center">
+      <div class="flex justify-center mb-4">
+        <svg class="w-12 h-12 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2-2h-3l-4 4z"></path></svg>
+      </div>
+      <h2 class="text-3xl font-bold text-white">Iniciar Sesión</h2>
+      <p class="mt-2 text-sm text-gray-400">Accede al Gestor Clínico de Pacientes</p>
+    </div>
+    <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="email" class="text-sm font-medium text-gray-300">Email</label>
+        <input 
+          id="email" 
+          type="email" 
+          formControlName="email"
+          placeholder="tu@email.com"
+          class="w-full px-4 py-3 mt-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+          required>
+      </div>
+      <div>
+        <label for="password" class="text-sm font-medium text-gray-300">Contraseña</label>
+        <input 
+          id="password" 
+          type="password"
+          formControlName="password" 
+          placeholder="••••••••"
+          class="w-full px-4 py-3 mt-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+          required>
+      </div>
+      
+      @if (errorMessage()) {
+        <div class="text-red-400 text-sm p-3 bg-red-900/50 rounded-lg">
+          {{ errorMessage() }}
+        </div>
+      }
+
+      <div class="text-xs text-gray-500 text-center p-2 border border-dashed border-gray-600 rounded-md">
+        <p><span class="font-bold">Nota:</span> Para la demostración, use las credenciales pre-cargadas.</p>
+      </div>
+
+      <div>
+        <button 
+          type="submit" 
+          [disabled]="loading() || loginForm.invalid"
+          class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors duration-200">
+          @if (loading()) {
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Iniciando sesión...</span>
+          } @else {
+            <span>Iniciar Sesión</span>
+          }
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

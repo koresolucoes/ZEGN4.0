@@ -1,0 +1,5 @@
+{
+  "name": "Gestor Clínico de Pacientes con IA",
+  "description": "Una aplicación para gestionar pacientes clínicos que utiliza un agente de IA e integración con WhatsApp para optimizar la comunicación y la atención.",
+  "requestFramePermissions": []
+}
