@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { createClient, SupabaseClient, AuthChangeEvent, Session, UserCredentials } from '@supabase/supabase-js';
+import { createClient, SupabaseClient, AuthChangeEvent, Session, SignInWithPasswordCredentials } from '@supabase/supabase-js';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class SupabaseService {
     });
   }
 
-  signIn(credentials: UserCredentials) {
+  signIn(credentials: SignInWithPasswordCredentials) {
     return this.supabase.auth.signInWithPassword(credentials);
   }
 
