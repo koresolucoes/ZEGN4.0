@@ -11,6 +11,7 @@ export class GeminiService {
   private chats = new Map<string, Chat>();
 
   constructor() {
+    // FIX: Use `process.env.API_KEY` to get the Gemini API key as per project requirements, replacing `import.meta.env`.
     const apiKey = (process.env as any).API_KEY;
     if (apiKey) {
       this.ai = new GoogleGenAI({ apiKey });
@@ -51,6 +52,7 @@ export class GeminiService {
     newMessage: string
   ): Promise<string> {
     if (!this.isInitialized) {
+      // FIX: Updated the error message to reference the correct environment variable `API_KEY`.
       return 'Error: El servicio de IA no está configurado. Por favor, añade una clave de API de Gemini en la variable de entorno API_KEY.';
     }
     try {

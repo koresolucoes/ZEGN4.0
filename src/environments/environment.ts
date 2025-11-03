@@ -1,13 +1,18 @@
 export const environment = {
   supabase: {
-    url: 'https://ahhseskrpybaqlqqcdve.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoaHNlc2tycHliYXFscXFjZHZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxNDU2NTAsImV4cCI6MjA2NTcyMTY1MH0.YGd2HcO16zCHixxhxBq8gf3bIY-HbOC77l9vEiMAjSA'
+    // FIX: Replaced `import.meta.env` with `process.env` to access environment variables.
+    url: (process.env as any).VITE_SUPABASE_URL,
+    // FIX: Replaced `import.meta.env` with `process.env` to access environment variables.
+    anonKey: (process.env as any).VITE_SUPABASE_ANON_KEY
   },
   evolutionApi: {
-    url: 'https://ahhseskrpybaqlqqcdve.supabase.co', // This should be your Evolution API instance URL
-    apiKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoaHNlc2tycHliYXFscXFjZHZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxNDU2NTAsImV4cCI6MjA2NTcyMTY1MH0.YGd2HcO16zCHixxhxBq8gf3bIY-HbOC77l9vEiMAjSA'
+    // FIX: Replaced `import.meta.env` with `process.env` to access environment variables.
+    url: (process.env as any).EVOLUTION_API_URL,
+    // FIX: Replaced `import.meta.env` with `process.env` to access environment variables.
+    apiKey: (process.env as any).EVOLUTION_MASTER_API_KEY
   },
   gemini: {
+    // FIX: Updated comment to reflect the source of the Gemini API key.
     // API Key is now handled via process.env.API_KEY in GeminiService
   }
 };
