@@ -1,4 +1,3 @@
-
 import { Component, computed, inject, output, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PatientService } from '../../services/patient.service';
@@ -16,11 +15,14 @@ export class PatientListComponent {
   patientSelected = output<Patient>();
 
   searchTerm = signal('');
-  selectedPatientId = signal<number | null>(null);
+  selectedPatientId = signal<string | null>(null);
   
+  // Patients are now read directly from the service signal
+  allPatients = this.patientService.patientsRO;
+
   filteredPatients = computed(() => {
     const term = this.searchTerm().toLowerCase();
-    return this.patientService.patientsRO().filter(p => p.name.toLowerCase().includes(term));
+    return this.allPatients().filter(p => p.full_name.toLowerCase().includes(term));
   });
 
   onSearch(event: Event) {
@@ -46,9 +48,11 @@ export class PatientListComponent {
     }
   }
 
-  formatLastContact(date: Date): string {
+  formatLastContact(dateString: string): string {
+    const date = new Date(dateString);
     const now = new Date();
     const diff = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+    if (isNaN(diff)) return 'N/A';
     if (diff === 0) return 'Hoy';
     if (diff === 1) return 'Ayer';
     return `Hace ${diff} días`;

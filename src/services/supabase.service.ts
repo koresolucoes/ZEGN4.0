@@ -6,7 +6,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class SupabaseService {
-  private supabase: SupabaseClient;
+  public supabase: SupabaseClient;
   session = signal<Session | null>(null);
 
   constructor() {

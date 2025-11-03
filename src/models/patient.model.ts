@@ -12,11 +12,13 @@ export enum PatientStatus {
 }
 
 export interface Patient {
-  id: number;
-  name: string;
+  id: string; // Changed from number to string for UUIDs
+  patient_code: string;
+  full_name: string; // Renamed from 'name'
   phone: string;
   status: PatientStatus;
-  lastContact: Date;
+  last_consultation: string; // Renamed from 'lastContact' and type changed to string
+  medical_history_notes: string;
   avatarUrl: string;
   chatHistory: Message[];
 }
